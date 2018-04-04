@@ -23,9 +23,10 @@ add_custom_command(
 add_custom_command(
     TARGET build_bundle POST_BUILD
     # NOTE: Needs testing here, whether CPACK_SYSTEM_NAME is working good for 64bit builds, too.
-    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/packaging/cura.ico ${CMAKE_BINARY_DIR}/package/
-    COMMAND ${CMAKE_COMMAND} -E rename ${CMAKE_BINARY_DIR}/package/cura.ico ${CMAKE_BINARY_DIR}/package/Cura.ico
-    COMMENT "copying cura.ico as Cura.ico into package/"
+    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/packaging/Dremel3DSlicer.ico ${CMAKE_BINARY_DIR}/package/
+    COMMAND ${CMAKE_COMMAND} -E rename ${CMAKE_BINARY_DIR}/package/Dremel3DSlicer.ico ${CMAKE_BINARY_DIR}/package/Dremel3DSlicer.ico
+    COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_BINARY_DIR}/package/plugins/UpdateChecker
+    COMMENT "copying Dremel3DSlicer.ico as Dremel3DSlicer.ico into package/"
 )
 
 install(DIRECTORY ${CMAKE_BINARY_DIR}/package/
@@ -53,35 +54,35 @@ endif()
 
 include(CPackComponent)
 
-cpack_add_component(_cura DISPLAY_NAME "Ultimaker Cura Executable and Data Files" REQUIRED)
+cpack_add_component(_cura DISPLAY_NAME "Dremel DigiLab 3D Slicer Executable and Data Files" REQUIRED)
 cpack_add_component(vcredist DISPLAY_NAME "Install Visual Studio 2015 Redistributable")
 cpack_add_component(arduino DISPLAY_NAME "Install Arduino Drivers")
 
 set(CPACK_GENERATOR "NSIS")
-set(CPACK_PACKAGE_NAME "Ultimaker Cura")
+set(CPACK_PACKAGE_NAME "Dremel DigiLab 3D Slicer")
 string(REPLACE " " "" CPACK_PACKAGE_NAME_NO_WHITESPACES ${CPACK_PACKAGE_NAME})
-set(CPACK_PACKAGE_VENDOR "Ultimaker")
+set(CPACK_PACKAGE_VENDOR "3DPrinterOS")
 set(CPACK_PACKAGE_VERSION_MAJOR ${CURA_VERSION_MAJOR})
 set(CPACK_PACKAGE_VERSION_MINOR ${CURA_VERSION_MINOR})
 set(CPACK_PACKAGE_VERSION_PATCH ${CURA_VERSION_PATCH})
 set(CPACK_PACKAGE_VERSION ${CURA_VERSION})
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Ultimaker Cura - 3D Printing Software")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Dremel DigiLab 3D Slicer - 3D Printing Software")
 set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_SOURCE_DIR}/packaging/cura_license)
-set(CPACK_PACKAGE_CONTACT "Arjen Hiemstra <a.hiemstra@ultimaker.com>")
+set(CPACK_PACKAGE_CONTACT "Anton Vedeshin <anton@3dprinteros.com>")
 
-set(CPACK_PACKAGE_EXECUTABLES Cura "Ultimaker Cura ${CURA_VERSION_MAJOR}.${CURA_VERSION_MINOR}.${CURA_VERSION_PATCH}")
-set(CPACK_PACKAGE_INSTALL_DIRECTORY "Ultimaker Cura ${CURA_VERSION_MAJOR}.${CURA_VERSION_MINOR}")
+set(CPACK_PACKAGE_EXECUTABLES Cura "Dremel DigiLab 3D Slicer ${CURA_VERSION_MAJOR}.${CURA_VERSION_MINOR}.${CURA_VERSION_PATCH}")
+set(CPACK_PACKAGE_INSTALL_DIRECTORY "Dremel DigiLab 3D Slicer ${CURA_VERSION_MAJOR}.${CURA_VERSION_MINOR}")
 
 # CPackNSIS
 set(CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON)
 set(CPACK_NSIS_EXECUTABLES_DIRECTORY ".")
-set(CPACK_NSIS_INSTALLED_ICON_NAME "Cura.ico")
+set(CPACK_NSIS_INSTALLED_ICON_NAME "Dremel3DSlicer.ico")
 set(CPACK_NSIS_MENU_LINKS
     "https://ultimaker.com/en/support/software" "Online Documentation"
     "https://github.com/ultimaker/cura" "Development Resources"
 )
 
-set(CPACK_NSIS_INSTALLER_MUI_FINISHPAGE_RUN_CODE "!define MUI_FINISHPAGE_RUN \\\"$WINDIR\\\\explorer.exe\\\"\n!define MUI_FINISHPAGE_RUN_PARAMETERS \\\"$INSTDIR\\\\Cura.exe\\\"")
+set(CPACK_NSIS_INSTALLER_MUI_FINISHPAGE_RUN_CODE "!define MUI_FINISHPAGE_RUN \\\"$WINDIR\\\\explorer.exe\\\"\n!define MUI_FINISHPAGE_RUN_PARAMETERS \\\"$INSTDIR\\\\Dremel3DSlicer.exe\\\"")
 
 # Needed to call the correct vcredist_x["32", "64"] executable
 # TODO: Use a variable, which is already known. For example CPACK_SYSTEM_NAME -> "win32"

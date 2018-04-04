@@ -20,18 +20,18 @@ if(SIGN_PACKAGE)
 endif()
 
 # This should care that our CMAKE_PREFIX_PATH is absolute at the end...
-get_filename_component(CMAKE_PREFIX_PATH
-                       ${CMAKE_PREFIX_PATH}
-                       ABSOLUTE
-                       CACHE FORCE)
+#get_filename_component(CMAKE_PREFIX_PATH
+#                       ${CMAKE_PREFIX_PATH}
+#                       ABSOLUTE
+#                       CACHE FORCE)
 
 set(EXTERNALPROJECT_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/inst)
 
-GetFromEnvironmentOrCache(FDMMATERIALS_BRANCH_OR_TAG "master" STRING "The name of the tag or branch to build for fdm_materials")
-GetFromEnvironmentOrCache(CURABINARYDATA_BRANCH_OR_TAG "master" STRING "The name of the tag or branch to build for cura-binary-data")
-GetFromEnvironmentOrCache(CURAENGINE_BRANCH_OR_TAG "master" STRING "The name of the tag or branch to build for CuraEngine")
-GetFromEnvironmentOrCache(URANIUM_BRANCH_OR_TAG "master" STRING "The name of the tag or branch to build for Uranium")
-GetFromEnvironmentOrCache(CURA_BRANCH_OR_TAG "master" STRING "The name of the tag or branch to build for Cura")
+GetFromEnvironmentOrCache(FDMMATERIALS_BRANCH_OR_TAG "dremel_3dslicer_3.2" STRING "The name of the tag or branch to build for fdm_materials")
+GetFromEnvironmentOrCache(CURABINARYDATA_BRANCH_OR_TAG "3.2" STRING "The name of the tag or branch to build for cura-binary-data")
+GetFromEnvironmentOrCache(CURAENGINE_BRANCH_OR_TAG "3.2" STRING "The name of the tag or branch to build for CuraEngine")
+GetFromEnvironmentOrCache(URANIUM_BRANCH_OR_TAG "3.2" STRING "The name of the tag or branch to build for Uranium")
+GetFromEnvironmentOrCache(CURA_BRANCH_OR_TAG "dremel_3dslicer_3.2" STRING "The name of the tag or branch to build for Cura")
 GetFromEnvironmentOrCache(LIBCHARON_BRANCH_OR_TAG "master" STRING "The name of the tag or branch to build for libCharon")
 
 GetFromEnvironmentOrCache(CURAENGINE_ENABLE_MORE_COMPILER_OPTIMIZATION_FLAGS "ON" STRING "Whether to enable extra compiler optimization flags for CuraEngine")
@@ -40,8 +40,8 @@ GetFromEnvironmentOrCache(CURA_BUILD_NAME "master" STRING "The build name")
 GetFromEnvironmentOrCache(EXTRA_REPOSITORIES "" STRING "Extra repositories to install. Expected to have a CMake based build system. Format is (<project name> <git URL> <cmake configuration options>\;)*")
 
 # Create the version-related variables
-GetFromEnvironmentOrCache(CURA_VERSION_MAJOR "0" STRING "Cura Major Version")
-GetFromEnvironmentOrCache(CURA_VERSION_MINOR "0" STRING "Cura Minor Version")
+GetFromEnvironmentOrCache(CURA_VERSION_MAJOR "3" STRING "Cura Major Version")
+GetFromEnvironmentOrCache(CURA_VERSION_MINOR "2" STRING "Cura Minor Version")
 GetFromEnvironmentOrCache(CURA_VERSION_PATCH "0" STRING "Cura Patch Version")
 GetFromEnvironmentOrCache(CURA_VERSION_EXTRA "${TAG_OR_BRANCH}" STRING "Cura Extra Version Information")
 
@@ -93,7 +93,7 @@ if(SIGN_PACKAGE)
     add_custom_target(signing ALL DEPENDS packaging COMMENT "Signing Package...")
 
     if(BUILD_OS_WINDOWS)
-        include(signing/windows.cmake)
+     #   include(signing/windows.cmake)
     elseif(BUILD_OS_OSX)
         include(signing/osx.cmake)
     elseif(BUILD_OS_LINUX)
