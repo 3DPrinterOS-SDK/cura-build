@@ -121,23 +121,23 @@ build_options = {
 executables = [
     Executable(script="@EXTERNALPROJECT_INSTALL_PREFIX@/bin/cura_app.py",
                base="Win32GUI",
-               targetName = "Dremel3DSlicer.exe",
+               targetName = "Kodak3DSlicer.exe",
                icon="@CMAKE_SOURCE_DIR@/packaging/cura.ico"
                ),
     Executable(script="@EXTERNALPROJECT_INSTALL_PREFIX@/bin/cura_app.py",
                base="Console",
-               targetName = "Dremel3DSlicerCLI.exe",
+               targetName = "Kodak3DSlicerCLI.exe",
                icon="@CMAKE_SOURCE_DIR@/packaging/cura.ico"
                ),
 ]
 
 setup(
-    name = "Dremel DigiLab 3D Slicer",
+    name = "Kodak 3D Slicer",
     version = "@CURA_VERSION_MAJOR@.@CURA_VERSION_MINOR@.@CURA_VERSION_PATCH@",
-    description = "Dremel DigiLab 3D Slicer",
-    long_description = "Dremel DigiLab 3D Slicer - 3D Printing Software",
+    description = "Kodak 3D Slicer",
+    long_description = "Kodak 3D Slicer - 3D Printing Software",
     author = "3DPrinterOS",
-    url = "https://digilab.dremel.com/software",
+    url = "https://3dprinteros.os",
     license = "GNU LESSER GENERAL PUBLIC LICENSE (LGPL)",
 
     options = {"build_exe": build_options},
