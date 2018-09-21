@@ -541,19 +541,19 @@ FunctionEnd
 
 !include "FileAssociation.nsh"
 
-Section /o "Open 3MF files with Kodak 3D Slicer"
+Section "Open 3MF files with KODAK 3D Slicer"
     ${RegisterExtension} "$INSTDIR\Kodak3DSlicer.exe" ".3mf" "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.3mf.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@" "3MF model file"
 SectionEnd
 
-Section /o "Open OBJ files with Kodak 3D Slicer"
+Section "Open OBJ files with KODAK 3D Slicer"
     ${RegisterExtension} "$INSTDIR\Kodak3DSlicer.exe" ".obj" "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.obj.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@" "OBJ model file"
 SectionEnd
 
-Section "Open STL files with Kodak 3D Slicer"
+Section "Open STL files with KODAK 3D Slicer"
     ${RegisterExtension} "$INSTDIR\Kodak3DSlicer.exe" ".stl" "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.stl.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@" "STL model file"
 SectionEnd
 
-Section /o "Open X3D files with Kodak 3D Slicer"
+Section "Open X3D files with KODAK 3D Slicer"
     ${RegisterExtension} "$INSTDIR\Kodak3DSlicer.exe" ".x3d" "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.x3d.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@" "X3D model file"
 SectionEnd
 
@@ -743,12 +743,12 @@ Section "-Core installation"
   IntCmp $vcredist_selected 0 +2
   ExecWait '"$INSTDIR\vcredist_x@CPACK_NSIS_PACKAGE_ARCHITECTURE@.exe" /install /quiet /norestart'
 
-  IntCmp $arduino_selected 0 +6
-  ${If} ${RunningX64}
-    ExecWait '"$INSTDIR\arduino\dpinst-amd64.exe" /lm /sw'
-  ${Else}
-    ExecWait '"$INSTDIR\arduino\dpinst-x86.exe" /lm /sw'
-  ${EndIf}
+  ;IntCmp $arduino_selected 0 +6
+  ;${If} ${RunningX64}
+  ;  ExecWait '"$INSTDIR\arduino\dpinst-amd64.exe" /lm /sw'
+  ;${Else}
+  ;  ExecWait '"$INSTDIR\arduino\dpinst-x86.exe" /lm /sw'
+  ;${EndIf}
 
 @CPACK_NSIS_EXTRA_INSTALL_COMMANDS@
 
@@ -987,21 +987,22 @@ Function .onInit
   StrCmp "@CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL@" "ON" 0 inst
   IfSilent inst 0
 
-  !insertmacro uninstallVersion "Kodak 3D Slicer 14.12" "Kodak_3D_Slicer_14.12.1" "14121"
-  !insertmacro uninstallVersion "Kodak 3D Slicer 15.04" "Kodak_3D_Slicer_15.04.4" "15044"
-  !insertmacro uninstallVersion "Kodak 3D Slicer 15.04" "Kodak_3D_Slicer_15.04.5" "15045"
-  !insertmacro uninstallVersion "Kodak 3D Slicer 15.04" "Kodak_3D_Slicer_15.04.6" "15046"
-  !insertmacro uninstallVersion "Kodak 3D Slicer 2.1" "Kodak 3D Slicer 2.1" "21"
-  !insertmacro uninstallVersion "Kodak 3D Slicer 2.3" "Kodak 3D Slicer 2.3" "23"
-  !insertmacro uninstallVersion "Kodak 3D Slicer 2.4" "Kodak 3D Slicer 2.4" "24"
-  !insertmacro uninstallVersion "Kodak 3D Slicer 2.5" "Kodak 3D Slicer 2.5" "25"
-  !insertmacro uninstallVersion "Kodak 3D Slicer 2.6" "Kodak 3D Slicer 2.6" "26"
-  !insertmacro uninstallVersion "Kodak 3D Slicer 2.7" "Kodak 3D Slicer 2.7" "27"
-  !insertmacro uninstallVersion "Kodak 3D Slicer 3.0" "Kodak 3D Slicer 3.0" "30"
-  !insertmacro uninstallVersion "Kodak 3D Slicer 3.0" "Kodak 3D Slicer 3.0" "U30" ; Name change during 3.0 release
-  !insertmacro uninstallVersion "Kodak 3D Slicer 3.1" "Kodak 3D Slicer 3.1" "U31"
-  ;!insertmacro uninstallVersion "Kodak 3D Slicer 3.2" "Kodak 3D Slicer 3.2" "U32" ; Template for the future
-  !insertmacro uninstallVersion "Kodak 3D Slicer @CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@" "@CPACK_PACKAGE_INSTALL_REGISTRY_KEY@" "latest"
+  !insertmacro uninstallVersion "KODAK 3D Slicer 14.12" "Kodak_3D_Slicer_14.12.1" "14121"
+  !insertmacro uninstallVersion "KODAK 3D Slicer 15.04" "Kodak_3D_Slicer_15.04.4" "15044"
+  !insertmacro uninstallVersion "KODAK 3D Slicer 15.04" "Kodak_3D_Slicer_15.04.5" "15045"
+  !insertmacro uninstallVersion "KODAK 3D Slicer 15.04" "Kodak_3D_Slicer_15.04.6" "15046"
+  !insertmacro uninstallVersion "KODAK 3D Slicer 2.1" "KODAK 3D Slicer 2.1" "21"
+  !insertmacro uninstallVersion "KODAK 3D Slicer 2.3" "KODAK 3D Slicer 2.3" "23"
+  !insertmacro uninstallVersion "KODAK 3D Slicer 2.4" "KODAK 3D Slicer 2.4" "24"
+  !insertmacro uninstallVersion "KODAK 3D Slicer 2.5" "KODAK 3D Slicer 2.5" "25"
+  !insertmacro uninstallVersion "KODAK 3D Slicer 2.6" "KODAK 3D Slicer 2.6" "26"
+  !insertmacro uninstallVersion "KODAK 3D Slicer 2.7" "KODAK 3D Slicer 2.7" "27"
+  !insertmacro uninstallVersion "KODAK 3D Slicer 3.0" "KODAK 3D Slicer 3.0" "30"
+  !insertmacro uninstallVersion "KODAK 3D Slicer 3.0" "KODAK 3D Slicer 3.0" "U30" ; Name change during 3.0 release
+  !insertmacro uninstallVersion "KODAK 3D Slicer 3.1" "KODAK 3D Slicer 3.1" "U31"
+  !insertmacro uninstallVersion "KODAK 3D Slicer 3.2" "KODAK 3D Slicer 3.2" "U32"
+  !insertmacro uninstallVersion "KODAK 3D Slicer 3.3" "KODAK 3D Slicer 3.3" "U33"
+  !insertmacro uninstallVersion "KODAK 3D Slicer @CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@" "@CPACK_PACKAGE_INSTALL_REGISTRY_KEY@" "latest"
 
 inst:
 

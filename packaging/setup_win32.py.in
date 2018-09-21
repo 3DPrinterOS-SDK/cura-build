@@ -132,10 +132,10 @@ executables = [
 ]
 
 setup(
-    name = "Kodak 3D Slicer",
+    name = "KODAK 3D Slicer",
     version = "@CURA_VERSION_MAJOR@.@CURA_VERSION_MINOR@.@CURA_VERSION_PATCH@",
-    description = "Kodak 3D Slicer",
-    long_description = "Kodak 3D Slicer - 3D Printing Software",
+    description = "KODAK 3D Slicer",
+    long_description = "KODAK 3D Slicer - 3D Printing Software",
     author = "3DPrinterOS",
     url = "https://3dprinteros.os",
     license = "GNU LESSER GENERAL PUBLIC LICENSE (LGPL)",
