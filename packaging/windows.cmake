@@ -29,6 +29,15 @@ add_custom_command(
     COMMENT "copying kodak.ico as kodak.ico into package/"
 )
 
+add_custom_command(
+    TARGET build_bundle POST_BUILD
+    # NOTE: Needs testing here, whether CPACK_SYSTEM_NAME is working good for 64bit builds, too.
+    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/packaging/cura_license ${CMAKE_BINARY_DIR}/package/
+    COMMAND ${CMAKE_COMMAND} -E rename ${CMAKE_BINARY_DIR}/package/cura_license ${CMAKE_BINARY_DIR}/package/LICENSE.txt
+    COMMENT "copying cura_license as LICENSE.txt into package/"
+)
+
+
 install(DIRECTORY ${CMAKE_BINARY_DIR}/package/
         DESTINATION "."
         USE_SOURCE_PERMISSIONS
