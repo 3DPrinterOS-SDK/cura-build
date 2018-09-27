@@ -46,7 +46,15 @@ add_custom_command(
     COMMENT "Copying AppRun executable..."
 )
 
-set(APPIMAGE_FILENAME "Cura-${CURA_VERSION}.AppImage")
+add_custom_command(
+    TARGET packaging PRE_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy cura_license ${PACKAGE_DIR}
+    COMMAND ${CMAKE_COMMAND} -E rename ${PACKAGE_DIR}/cura_license ${PACKAGE_DIR}/LICENSE.txt 
+    COMMENT "Copying cura_license as LICENSE.txt file..."
+    WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+)
+
+set(APPIMAGE_FILENAME "KODAK 3D Slicer-${CURA_VERSION}.AppImage")
 
 add_custom_command(
     TARGET packaging POST_BUILD
