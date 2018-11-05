@@ -561,6 +561,8 @@ SectionEnd
 ; Define some macro setting for the gui
 @CPACK_NSIS_INSTALLER_MUI_ICON_CODE@
 @CPACK_NSIS_INSTALLER_ICON_CODE@
+@CPACK_NSIS_INSTALLER_MUI_WELCOMEFINISH_CODE@
+@CPACK_NSIS_INSTALLER_MUI_UNWELCOMEFINISH_CODE@
 @CPACK_NSIS_INSTALLER_MUI_COMPONENTS_DESC@
 @CPACK_NSIS_INSTALLER_MUI_FINISHPAGE_RUN_CODE@
 
@@ -773,6 +775,10 @@ FunctionEnd
 ;--------------------------------
 ; determine admin versus local install
 Function un.onInit
+  VAR /GLOBAL UserAppDataDir
+  VAR /GLOBAL UserLocalAppDataDir
+  StrCpy $UserAppDataDir "$APPDATA"
+  StrCpy $UserLocalAppDataDir "$LOCALAPPDATA"
 
   ClearErrors
   UserInfo::GetName
@@ -836,6 +842,14 @@ FunctionEnd
 ;Uninstaller Section
 
 Section "Uninstall"
+  Var /GLOBAL CuraVersionDir
+  StrCpy $CuraVersionDir "@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@"
+  MessageBox MB_YESNO "Do you want to remove all your configuration files?" IDYES remove_user_dir_yes IDNO remove_user_dir_no
+  remove_user_dir_yes:
+    RMDir /r "$UserAppDataDir\cura\$CuraVersionDir"
+    RMDir /r "$UserLocalAppDataDir\cura\$CuraVersionDir"
+  remove_user_dir_no:
+
   ReadRegStr $START_MENU SHCTX \
    "Software\Microsoft\Windows\CurrentVersion\Uninstall\@CPACK_PACKAGE_INSTALL_REGISTRY_KEY@" "StartMenu"
   ;MessageBox MB_OK "Start menu is in: $START_MENU"
@@ -1000,7 +1014,10 @@ Function .onInit
   !insertmacro uninstallVersion "Cura 3.0" "Cura 3.0" "30"
   !insertmacro uninstallVersion "Ultimaker Cura 3.0" "Ultimaker Cura 3.0" "U30" ; Name change during 3.0 release
   !insertmacro uninstallVersion "Ultimaker Cura 3.1" "Ultimaker Cura 3.1" "U31"
-  ;!insertmacro uninstallVersion "Ultimaker Cura 3.2" "Ultimaker Cura 3.2" "U32" ; Template for the future
+  !insertmacro uninstallVersion "Ultimaker Cura 3.2" "Ultimaker Cura 3.2" "U32"
+  !insertmacro uninstallVersion "Ultimaker Cura 3.3" "Ultimaker Cura 3.3" "U33"
+  !insertmacro uninstallVersion "Ultimaker Cura 3.4" "Ultimaker Cura 3.4" "U34"
+  !insertmacro uninstallVersion "Ultimaker Cura 3.5" "Ultimaker Cura 3.5" "U35"
   !insertmacro uninstallVersion "Ultimaker Cura @CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@" "@CPACK_PACKAGE_INSTALL_REGISTRY_KEY@" "latest"
 
 inst:

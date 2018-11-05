@@ -1,18 +1,23 @@
+#!/bin/bash
+
+set -e
+
 #Set path to Arduino headers and compilers and such.
 ARDUINO_PATH=/usr/share/arduino
 PATH=${ARDUINO_PATH}/hardware/tools/avr/bin:${ARDUINO_PATH}/hardware/tools/avr/tools/bin:$PATH
 ARDUINO_VERSION=105
-CURA_VERSION=2.3
+CURA_VERSION=3.3.0
 
 #Get the cura-binary-data repository to push updated firmware to (always clean pull).
-rm -rf cura-binary-data
-git clone git@github.com:Ultimaker/cura-binary-data.git
-cd cura-binary-data
-git checkout master #TODO: Set this properly?
-git pull #Just to be sure, in case the repository already existed.
+pushd cura-binary-data
+git fetch
+git reset --hard origin/master
 rm cura/resources/firmware/commit-ids.txt #Reset these files.
 rm cura/resources/firmware/sha1hashes.txt
-cd ..
+popd
+
+rm -rf build
+mkdir build
 
 #Helper functions.
 
@@ -26,16 +31,18 @@ function makeAndCopy
     echo "Building $1.hex"
     rm -rf build/$1 #Remove any old build objects.
     mkdir build/$1
-    git clone https://github.com/Ultimaker/$2.git
-    cd $2
-    git checkout $3
-    git pull #Just to be sure.
+	if [ ! -d $2 ]; then
+	    git clone https://github.com/Ultimaker/$2.git
+	fi
+    pushd "${2}"
+    git fetch
+    git reset --hard "origin/${3}"
     cd Marlin
     make HARDWARE_MOTHERBOARD=$4 ARDUINO_INSTALL_DIR=${ARDUINO_PATH} ARDUINO_VERSION=${ARDUINO_VERSION} BUILD_DIR=../../build/$1 DEFINES="$5"
     #make HARDWARE_MOTHERBOARD=$4 BUILD_DIR=../../build/$1 DEFINES=$5
     commitid="$(git rev-parse HEAD)"
     echo $1: $commitid >> ../../cura-binary-data/cura/resources/firmware/commit-ids.txt
-    cd ../..
+    popd
     cp build/$1/Marlin.hex cura-binary-data/cura/resources/firmware/$1.hex
     sha1sum build/$1/Marlin.hex >> cura-binary-data/cura/resources/firmware/sha1hashes.txt
 }

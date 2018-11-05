@@ -21,6 +21,14 @@ set(PACKAGE_DIR ${CMAKE_BINARY_DIR}/package)
 
 add_custom_command(
     TARGET packaging PRE_BUILD
+    COMMAND ln -s libcrypto.so.10 libcrypto.so
+    COMMAND ln -s libssl.so.10 libssl.so
+    COMMENT "Creating symbolic links to libssl files and libgoes files..."
+    WORKING_DIRECTORY ${PACKAGE_DIR}/usr/bin
+)
+
+add_custom_command(
+    TARGET packaging PRE_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy cura.desktop ${PACKAGE_DIR}
     COMMENT "Copying icon and desktop file..."
     WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
@@ -37,6 +45,13 @@ add_custom_command(
     TARGET packaging PRE_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy cura.sh ${PACKAGE_DIR}/usr/bin/
     COMMENT "Copying shell script..."
+    WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+)
+
+add_custom_command(
+    TARGET packaging PRE_BUILD
+    COMMAND ${CMAKE_CURRENT_LIST_DIR}/linux_mod_rpath.sh ${PACKAGE_DIR}/usr/bin/
+    COMMENT "Modify RPATH for ELFs..."
     WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
 )
 

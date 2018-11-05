@@ -2,6 +2,8 @@
 
 This repository contains build scripts used to build Cura and all dependencies from scratch.
 
+The build has a number of dependencies. Ideally, these dependencies should be installed by the [cura-build-environment](https://github.com/Ultimaker/cura-build-environment) repository. Even with cura-build-environment though, some things may still be missing from your system that we haven't thought of.
+
 ## OS X
 
 1. Install CMake (available via [homebrew](http://brew.sh/) or [cmake.org](http://www.cmake.org/))
@@ -36,6 +38,10 @@ On Windows, the following dependencies are needed for building:
   It can be easily installed via `pip3 install PyQt5`
 * **SIP** from https://pypi.python.org/pypi/SIP/4.18.1
   It can be easily installed via `pip3 install sip`
+* **Trimesh** from https://pypi.python.org/pypi/trimesh/2.32.1
+  It can be easily installed via `pip3 install trimesh`
+* **Shapely** from https://pypi.python.org/pypi/Shapely/1.6.4.post2
+  It can be easily installed via `pip3 install shapely[vectorized]`. If it doesn't work, you'll need to download a .whl from https://www.lfd.uci.edu/~gohlke/pythonlibs/#shapely for Python 3.5 and install it via `pip install <your_whl_file>.whl`.
 * **Zeroconf** from https://pypi.python.org/pypi/zeroconf/0.17.6
   It can be easily installed via `pip3 install zeroconf`
 * **NumPy-STL** from https://pypi.python.org/pypi/numpy-stl/2.0.0
@@ -84,7 +90,7 @@ cd cura-build
 mkdir build
 cd build
 ..\env_win64.bat
-cmake -G "MinGW Makefiles" -DBUILD_64BIT:BOOL=ON ..
+cmake -G "MinGW Makefiles" ..
 mingw32-make
 mingw32-make package
 ```
