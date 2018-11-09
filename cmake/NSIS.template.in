@@ -1016,9 +1016,9 @@ Function .onInit
   !insertmacro uninstallVersion "KODAK 3D Slicer 3.1" "KODAK 3D Slicer 3.1" "U31"
   !insertmacro uninstallVersion "KODAK 3D Slicer 3.2" "KODAK 3D Slicer 3.2" "U32"
   !insertmacro uninstallVersion "KODAK 3D Slicer 3.3" "KODAK 3D Slicer 3.3" "U33"
-  !insertmacro uninstallVersion "Ultimaker Cura 3.4" "Ultimaker Cura 3.4" "U34"
-  !insertmacro uninstallVersion "Ultimaker Cura 3.5" "Ultimaker Cura 3.5" "U35"
-  !insertmacro uninstallVersion "Ultimaker Cura @CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@" "@CPACK_PACKAGE_INSTALL_REGISTRY_KEY@" "latest"
+  !insertmacro uninstallVersion "KODAK 3D Slicer 3.4" "Ultimaker Cura 3.4" "U34"
+  !insertmacro uninstallVersion "KODAK 3D Slicer 3.5" "Ultimaker Cura 3.5" "U35"
+  !insertmacro uninstallVersion "KODAK 3D Slicer @CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@" "@CPACK_PACKAGE_INSTALL_REGISTRY_KEY@" "latest"
 
 inst:
 
