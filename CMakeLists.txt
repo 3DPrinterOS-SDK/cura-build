@@ -27,21 +27,21 @@ endif()
 
 set(EXTERNALPROJECT_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/inst)
 
-GetFromEnvironmentOrCache(FDMMATERIALS_BRANCH_OR_TAG "kodak_3dslicer_3.5" STRING "The name of the tag or branch to build for fdm_materials")
-GetFromEnvironmentOrCache(CURABINARYDATA_BRANCH_OR_TAG "3.5" STRING "The name of the tag or branch to build for cura-binary-data")
-GetFromEnvironmentOrCache(CURAENGINE_BRANCH_OR_TAG "3.5" STRING "The name of the tag or branch to build for CuraEngine")
-GetFromEnvironmentOrCache(URANIUM_BRANCH_OR_TAG "3.5" STRING "The name of the tag or branch to build for Uranium")
-GetFromEnvironmentOrCache(CURA_BRANCH_OR_TAG "kodak_3dslicer_3.5" STRING "The name of the tag or branch to build for Cura")
+GetFromEnvironmentOrCache(FDMMATERIALS_BRANCH_OR_TAG "kodak_3dslicer_3.6" STRING "The name of the tag or branch to build for fdm_materials")
+GetFromEnvironmentOrCache(CURABINARYDATA_BRANCH_OR_TAG "3.6" STRING "The name of the tag or branch to build for cura-binary-data")
+GetFromEnvironmentOrCache(CURAENGINE_BRANCH_OR_TAG "3.6" STRING "The name of the tag or branch to build for CuraEngine")
+GetFromEnvironmentOrCache(URANIUM_BRANCH_OR_TAG "3.6" STRING "The name of the tag or branch to build for Uranium")
+GetFromEnvironmentOrCache(CURA_BRANCH_OR_TAG "kodak_3dslicer_3.6" STRING "The name of the tag or branch to build for Cura")
 GetFromEnvironmentOrCache(LIBCHARON_BRANCH_OR_TAG "master" STRING "The name of the tag or branch to build for libCharon")
 
 GetFromEnvironmentOrCache(CURAENGINE_ENABLE_MORE_COMPILER_OPTIMIZATION_FLAGS "ON" STRING "Whether to enable extra compiler optimization flags for CuraEngine")
 
-GetFromEnvironmentOrCache(CURA_BUILD_NAME "master" STRING "The build name")
+GetFromEnvironmentOrCache(CURA_BUILD_NAME "3.6" STRING "The build name")
 GetFromEnvironmentOrCache(EXTRA_REPOSITORIES "" STRING "Extra repositories to install. Expected to have a CMake based build system. Format is (<project name> <git URL> <cmake configuration options>\;)*")
 
 # Create the version-related variables
 GetFromEnvironmentOrCache(CURA_VERSION_MAJOR "3" STRING "Cura Major Version")
-GetFromEnvironmentOrCache(CURA_VERSION_MINOR "5" STRING "Cura Minor Version")
+GetFromEnvironmentOrCache(CURA_VERSION_MINOR "6" STRING "Cura Minor Version")
 GetFromEnvironmentOrCache(CURA_VERSION_PATCH "0" STRING "Cura Patch Version")
 GetFromEnvironmentOrCache(CURA_VERSION_EXTRA "${TAG_OR_BRANCH}" STRING "Cura Extra Version Information")
 
