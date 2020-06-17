@@ -1,6 +1,6 @@
 cpack_add_component(_cura
-            DISPLAY_NAME "Ultimaker Cura ${CURA_BUILDTYPE}"
-            Description "Ultimaker Cura ${CURA_BUILDTYPE} Executable and Data Files"
+            DISPLAY_NAME "DiaPrint PC ${CURA_BUILDTYPE}"
+            Description "DiaPrint PC ${CURA_BUILDTYPE} Executable and Data Files"
             REQUIRED
 )
 
@@ -8,9 +8,9 @@ cpack_add_component(_cura
 # CPack Common Settings
 # ========================================
 
-set(CPACK_PACKAGE_NAME "Ultimaker Cura")
+set(CPACK_PACKAGE_NAME "DiaPrint PC")
 if(CURA_BUILDTYPE MATCHES "Enterprise")
-    set(CPACK_PACKAGE_NAME "Ultimaker Cura ${CURA_BUILDTYPE}")
+    set(CPACK_PACKAGE_NAME "DiaPrint PC ${CURA_BUILDTYPE}")
 endif()
 string(REPLACE " " "_" CPACK_FILE_NAME_NO_SPACES "${CPACK_PACKAGE_NAME}")
 
@@ -28,20 +28,20 @@ set(CURA_FULL_VERSION "${CURA_VERSION_MAJOR}.${CURA_VERSION_MINOR}")
 if(CPACK_GENERATOR MATCHES "WIX")
     set(CURA_FULL_VERSION "${CURA_FULL_VERSION}.${CURA_VERSION_PATCH}")
 endif()
-set(CPACK_PACKAGE_NAME "Ultimaker Cura ${CURA_BUILDTYPE} ${CURA_FULL_VERSION}")
+set(CPACK_PACKAGE_NAME "DiaPrint PC ${CURA_BUILDTYPE} ${CURA_FULL_VERSION}")
 
 set(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}/packaging/cura.ico")
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Ultimaker Cura - 3D Printing Software")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "DiaPrint PC - 3D Printing Software")
 set(CPACK_PACKAGE_CONTACT "Ruben Dulek <r.dulek@ultimaker.com>")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/packaging/cura_license.txt")
 
-set(CPACK_CREATE_DESKTOP_LINKS Cura "Ultimaker Cura ${CURA_FULL_VERSION}")
-set(CPACK_PACKAGE_EXECUTABLES Cura "Ultimaker Cura ${CURA_FULL_VERSION}")
-set(CPACK_PACKAGE_INSTALL_DIRECTORY "Ultimaker Cura ${CURA_FULL_VERSION}")
+set(CPACK_CREATE_DESKTOP_LINKS Cura "DiaPrint PC ${CURA_FULL_VERSION}")
+set(CPACK_PACKAGE_EXECUTABLES Cura "DiaPrint PC ${CURA_FULL_VERSION}")
+set(CPACK_PACKAGE_INSTALL_DIRECTORY "DiaPrint PC ${CURA_FULL_VERSION}")
 if(CURA_BUILDTYPE MATCHES "Enterprise")
-    set(CPACK_CREATE_DESKTOP_LINKS Cura "Ultimaker Cura ${CURA_BUILDTYPE} ${CURA_FULL_VERSION}")
-    set(CPACK_PACKAGE_EXECUTABLES Cura "Ultimaker Cura ${CURA_BUILDTYPE} ${CURA_FULL_VERSION}")
-    set(CPACK_PACKAGE_INSTALL_DIRECTORY "Ultimaker Cura ${CURA_BUILDTYPE} ${CURA_FULL_VERSION}")
+    set(CPACK_CREATE_DESKTOP_LINKS Cura "DiaPrint PC ${CURA_BUILDTYPE} ${CURA_FULL_VERSION}")
+    set(CPACK_PACKAGE_EXECUTABLES Cura "DiaPrint PC ${CURA_BUILDTYPE} ${CURA_FULL_VERSION}")
+    set(CPACK_PACKAGE_INSTALL_DIRECTORY "DiaPrint PC ${CURA_BUILDTYPE} ${CURA_FULL_VERSION}")
 endif()
 
 STRING(TOLOWER "${CMAKE_SYSTEM_PROCESSOR}" CPACK_SYSTEM_NAME)

@@ -11,7 +11,7 @@ cpack_add_component(arduino DISPLAY_NAME "Arduino Drivers")
 # ========================================
 set(CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON)
 set(CPACK_NSIS_EXECUTABLES_DIRECTORY ".")
-set(CPACK_NSIS_STARTMENU_DIRECTORY "Ultimaker Cura")
+set(CPACK_NSIS_STARTMENU_DIRECTORY "DiaPrintPC")
 set(CPACK_NSIS_INSTALLED_ICON_NAME "Cura.ico")
 set(CPACK_NSIS_MUI_ICON ${CMAKE_SOURCE_DIR}\\\\packaging\\\\cura.ico)   # note: fails with forward '/'
 set(CPACK_PACKAGE_ICON ${CMAKE_SOURCE_DIR}\\\\packaging\\\\cura.ico)
@@ -23,4 +23,4 @@ set(CPACK_NSIS_MENU_LINKS
 
 set(CPACK_NSIS_MUI_WELCOMEFINISHPAGE_BITMAP ${CMAKE_SOURCE_DIR}\\\\packaging\\\\cura_banner_nsis.bmp)    # note: fails with forward '/'
 set(CPACK_NSIS_MUI_UNWELCOMEFINISHPAGE_BITMAP ${CMAKE_SOURCE_DIR}\\\\packaging\\\\cura_banner_nsis.bmp)
-set(CPACK_NSIS_INSTALLER_MUI_FINISHPAGE_RUN_CODE "!define MUI_FINISHPAGE_RUN \\\"$WINDIR\\\\explorer.exe\\\"\n!define MUI_FINISHPAGE_RUN_PARAMETERS \\\"$INSTDIR\\\\Cura.exe\\\"")	# Hack to ensure Cura is not started with admin rights
+set(CPACK_NSIS_INSTALLER_MUI_FINISHPAGE_RUN_CODE "!define MUI_FINISHPAGE_RUN \\\"$WINDIR\\\\explorer.exe\\\"\n!define MUI_FINISHPAGE_RUN_PARAMETERS \\\"$INSTDIR\\\\DiaPrintPC.exe\\\"")	# Hack to ensure Cura is not started with admin rights

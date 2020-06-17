@@ -6,6 +6,8 @@ import platform
 # Importing preinstalled modules to get their paths
 import PyQt5
 import numpy
+import stl
+import stl.mesh
 import trimesh
 import shapely
 
@@ -20,7 +22,6 @@ def load_numpy(finder, module):
     finder.IncludePackage("numpy._globals")
     finder.IncludePackage("numpy.lib.format")
     finder.IncludePackage("numpy.linalg._umath_linalg")
-
     # Include all MKL files that are needed to get Numpy with MKL working.
     npy_core_dir = os.path.join(module.path[0], "core")
     required_mkl_files = [
@@ -117,6 +118,7 @@ search_path = sys.path.copy()
 search_path.insert(1, "@EXTERNALPROJECT_INSTALL_PREFIX@/lib/python3.5/site-packages/")
 search_path.insert(2, "@CMAKE_PREFIX_PATH@/lib/python3.5/site-packages/")
 
+print("CMAKE_PREFIX_PATH: @CMAKE_PREFIX_PATH@")
 # Dependencies are automatically detected, but it might need
 # fine tuning.
 build_options = {
@@ -157,7 +159,7 @@ build_options = {
         ("@EXTERNALPROJECT_INSTALL_PREFIX@/lib/python3.5/site-packages/UM/Qt/qml/UM", "qml/UM"),
         ("@EXTERNALPROJECT_INSTALL_PREFIX@/share/cura/resources", "resources"),
         ("@EXTERNALPROJECT_INSTALL_PREFIX@/share/uranium/resources", "resources"),
-        ("@CMAKE_PREFIX_PATH@/bin/openctm.dll", ""), # For opening .CTM files
+        # ("@EXTERNALPROJECT_INSTALL_PREFIX@/bin/openctm.dll", ""), # For opening .CTM files
         # Preinstalled PyQt5 installation
         (PyQt5.__path__[0] + "/Qt/qml/Qt", "qml/Qt"),
         (PyQt5.__path__[0] + "/Qt/qml/QtQml", "qml/QtQml"),
@@ -173,26 +175,25 @@ build_options = {
 executables = [
     Executable(script="@EXTERNALPROJECT_INSTALL_PREFIX@/bin/cura_app.py",
                base="Win32GUI",
-               targetName = "Cura.exe",
+               targetName = "DiaPrintPC.exe",
                icon="@CMAKE_SOURCE_DIR@/packaging/cura.ico"
                ),
     Executable(script="@EXTERNALPROJECT_INSTALL_PREFIX@/bin/cura_app.py",
                base="Console",
-               targetName = "CuraCLI.exe",
+               targetName = "DiaPrintPC_CLI.exe",
                icon="@CMAKE_SOURCE_DIR@/packaging/cura.ico"
                ),
     
 ]
 
 setup(
-    name = "Ultimaker Cura",
+    name = "DiaPrint PC",
     version = "@CURA_VERSION_MAJOR@.@CURA_VERSION_MINOR@.@CURA_VERSION_PATCH@",
-    description = "Ultimaker Cura",
-    long_description = "Ultimaker Cura - 3D Printing Software",
+    description = "DiaPrint PC",
+    long_description = "DiaPrint PC - 3D Printing Software",
     author = "Ultimaker B.V.",
     url = "http://software.ultimaker.com/",
     license = "GNU LESSER GENERAL PUBLIC LICENSE (LGPL)",
-
     options = {"build_exe": build_options},
     executables = executables
 )

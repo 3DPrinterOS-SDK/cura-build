@@ -23,8 +23,8 @@ option(SIGN_PACKAGE "Perform signing of the created package. Implies BUILD_PACKA
 
 set(CURA_BUILDTYPE          "" CACHE STRING "Build type of Cura, eg. 'testing'")
 set(CURA_NO_INSTALL_PLUGINS "" CACHE STRING "A list of plugins to exclude from installation, should be separated by ';'.")
-set(CURA_MSI_PRODUCT_GUID   "" CACHE STRING "The Product GUID for Cura MSI")
-set(CURA_MSI_UPGRADE_GUID   "" CACHE STRING "The Upgrade GUID for Cura MSI")
+set(CURA_MSI_PRODUCT_GUID   "b4745216-e50a-4aff-af03-d995c8e72431" CACHE STRING "The Product GUID for Cura MSI")
+set(CURA_MSI_UPGRADE_GUID   "20f0107e-4b63-4511-aa56-76bda05c125f" CACHE STRING "The Upgrade GUID for Cura MSI")
 
 # Cura MSI product GUID and upgrade GUID
 if(BUILD_PACKAGE)
@@ -42,20 +42,20 @@ endif()
 
 set(EXTERNALPROJECT_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/inst)
 
-GetFromEnvironmentOrCache(FDMMATERIALS_BRANCH_OR_TAG "master" STRING "The name of the tag or branch to build for fdm_materials")
-GetFromEnvironmentOrCache(CURABINARYDATA_BRANCH_OR_TAG "master" STRING "The name of the tag or branch to build for cura-binary-data")
-GetFromEnvironmentOrCache(CURAENGINE_BRANCH_OR_TAG "master" STRING "The name of the tag or branch to build for CuraEngine")
-GetFromEnvironmentOrCache(URANIUM_BRANCH_OR_TAG "master" STRING "The name of the tag or branch to build for Uranium")
-GetFromEnvironmentOrCache(CURA_BRANCH_OR_TAG "master" STRING "The name of the tag or branch to build for Cura")
-GetFromEnvironmentOrCache(LIBCHARON_BRANCH_OR_TAG "master" STRING "The name of the tag or branch to build for libCharon")
+GetFromEnvironmentOrCache(FDMMATERIALS_BRANCH_OR_TAG "4.6" STRING "The name of the tag or branch to build for fdm_materials")
+GetFromEnvironmentOrCache(CURABINARYDATA_BRANCH_OR_TAG "4.6" STRING "The name of the tag or branch to build for cura-binary-data")
+GetFromEnvironmentOrCache(CURAENGINE_BRANCH_OR_TAG "4.6" STRING "The name of the tag or branch to build for CuraEngine")
+GetFromEnvironmentOrCache(URANIUM_BRANCH_OR_TAG "4.6" STRING "The name of the tag or branch to build for Uranium")
+GetFromEnvironmentOrCache(CURA_BRANCH_OR_TAG "dia_print_4.6" STRING "The name of the tag or branch to build for Cura")
+GetFromEnvironmentOrCache(LIBCHARON_BRANCH_OR_TAG "4.6" STRING "The name of the tag or branch to build for libCharon")
 
 GetFromEnvironmentOrCache(CURAENGINE_ENABLE_MORE_COMPILER_OPTIMIZATION_FLAGS "ON" STRING "Whether to enable extra compiler optimization flags for CuraEngine")
 
 GetFromEnvironmentOrCache(EXTRA_REPOSITORIES "" STRING "Extra repositories to install. Expected to have a CMake based build system. Format is (<project name> <git URL> <cmake configuration options>\;)*")
 
 # Create the version-related variables
-GetFromEnvironmentOrCache(CURA_VERSION_MAJOR "0" STRING "Cura Major Version")
-GetFromEnvironmentOrCache(CURA_VERSION_MINOR "0" STRING "Cura Minor Version")
+GetFromEnvironmentOrCache(CURA_VERSION_MAJOR "4" STRING "Cura Major Version")
+GetFromEnvironmentOrCache(CURA_VERSION_MINOR "6" STRING "Cura Minor Version")
 GetFromEnvironmentOrCache(CURA_VERSION_PATCH "0" STRING "Cura Patch Version")
 GetFromEnvironmentOrCache(CURA_VERSION_EXTRA "${TAG_OR_BRANCH}" STRING "Cura Extra Version Information")
 
@@ -133,7 +133,7 @@ if(SIGN_PACKAGE)
     add_custom_target(signing ALL DEPENDS packaging COMMENT "Signing Package...")
 
     if(BUILD_OS_WINDOWS)
-        include(signing/windows.cmake)
+    #    include(signing/windows.cmake)
     elseif(BUILD_OS_OSX)
         include(signing/osx.cmake)
     elseif(BUILD_OS_LINUX)

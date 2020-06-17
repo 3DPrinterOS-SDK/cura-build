@@ -28,6 +28,18 @@ add_custom_command(
     COMMENT "copying cura.ico as Cura.ico into package/"
 )
 
+add_custom_command(
+    TARGET build_bundle POST_BUILD
+    # NOTE: Needs testing here, whether CPACK_SYSTEM_NAME is working good for 64bit builds, too.
+    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/packaging/cura_license.txt ${CMAKE_BINARY_DIR}/package/
+    COMMAND ${CMAKE_COMMAND} -E rename ${CMAKE_BINARY_DIR}/package/cura_license.txt ${CMAKE_BINARY_DIR}/package/LICENSE.txt
+    COMMENT "copying cura_license.txt as LICENSE.txt into package/"
+	COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/packaging/openctm.dll ${CMAKE_BINARY_DIR}/package/
+	COMMENT "remove openctm plugin into package/"
+	COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_BINARY_DIR}/package/plugins/UpdateChecker
+	COMMENT "remove UpdateChecker plugin from package/"
+)
+
 #
 # CURA-6074
 # QTBUG-57832
@@ -48,7 +60,10 @@ install(DIRECTORY ${CMAKE_BINARY_DIR}/package/
         COMPONENT "_cura" # Note: _ prefix is necessary to make sure the Cura component is always listed first
 )
 
+set(CPACK_GENERATOR "NSIS")
+message("CPACK_GENERATOR ${CPACK_GENERATOR}")
 if(CPACK_GENERATOR MATCHES "NSIS64" OR CPACK_GENERATOR MATCHES "NSIS")
+	message("CPACK_GENERATOR ===== NSIS64!!!")
     # Only NSIS needs to have arduino and vcredist
     install(DIRECTORY ${EXTERNALPROJECT_INSTALL_PREFIX}/arduino
             DESTINATION "."
