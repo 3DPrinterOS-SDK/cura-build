@@ -157,7 +157,7 @@ build_options = {
         ("@EXTERNALPROJECT_INSTALL_PREFIX@/lib/python3.5/site-packages/UM/Qt/qml/UM", "qml/UM"),
         ("@EXTERNALPROJECT_INSTALL_PREFIX@/share/cura/resources", "resources"),
         ("@EXTERNALPROJECT_INSTALL_PREFIX@/share/uranium/resources", "resources"),
-        ("@CMAKE_PREFIX_PATH@/bin/openctm.dll", ""), # For opening .CTM files
+        #("@CMAKE_PREFIX_PATH@/bin/openctm.dll", ""), # For opening .CTM files
         # Preinstalled PyQt5 installation
         (PyQt5.__path__[0] + "/Qt/qml/Qt", "qml/Qt"),
         (PyQt5.__path__[0] + "/Qt/qml/QtQml", "qml/QtQml"),
@@ -173,24 +173,24 @@ build_options = {
 executables = [
     Executable(script="@EXTERNALPROJECT_INSTALL_PREFIX@/bin/cura_app.py",
                base="Win32GUI",
-               targetName = "Cura.exe",
+               targetName = "YourDesktopSlicer.exe",
                icon="@CMAKE_SOURCE_DIR@/packaging/cura.ico"
                ),
     Executable(script="@EXTERNALPROJECT_INSTALL_PREFIX@/bin/cura_app.py",
                base="Console",
-               targetName = "CuraCLI.exe",
+               targetName = "YourDesktopSlicerCLI.exe",
                icon="@CMAKE_SOURCE_DIR@/packaging/cura.ico"
                ),
     
 ]
 
 setup(
-    name = "Ultimaker Cura",
+    name = "Your Desktop Slicer",
     version = "@CURA_VERSION_MAJOR@.@CURA_VERSION_MINOR@.@CURA_VERSION_PATCH@",
-    description = "Ultimaker Cura",
-    long_description = "Ultimaker Cura - 3D Printing Software",
+    description = "Your Desktop Slicer",
+    long_description = "Your Desktop Slicer - 3D Printing Software",
     author = "Ultimaker B.V.",
-    url = "http://software.ultimaker.com/",
+    url = "https://3dprinteros.com",
     license = "GNU LESSER GENERAL PUBLIC LICENSE (LGPL)",
 
     options = {"build_exe": build_options},
